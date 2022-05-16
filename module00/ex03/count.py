@@ -1,6 +1,7 @@
 import string
 
 def text_analyzer(*args, **kwargs):
+    '''This function counts the number of upper characters, lower characters, punctuation and spaces in a given text.'''
     if len(args) > 1:
         print("ERROR")
         return
@@ -28,3 +29,4 @@ def text_analyzer(*args, **kwargs):
     + "- " + str(lowercase) + " lower letters\n"
     + "- " + str(punct) + " punctuation marks\n"
     + "- " + str(space) + " spaces\n")
+    return

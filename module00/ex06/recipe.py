@@ -1,6 +1,5 @@
 import sys
 
-
 cookbook = {
     'sandwich': {
         'ingredients': ['ham', 'bread', 'cheese', 'tomatoes'],
@@ -19,20 +18,24 @@ cookbook = {
     }
 }
 
+
 def print_recipe(name):
     if name in cookbook:
         print('\nRecipe for {}:'.format(name))
         sys.stdout.write('Ingredients lists: ')
         print(cookbook[name]['ingredients'])
         print('To be eaten for {}.'.format(cookbook[name]['meal']))
-        print('Takes {} minutes of cooking.'.format(cookbook[name]['prep_time']))
+        print('Takes {} minutes of cooking.'
+              .format(cookbook[name]['prep_time']))
     else:
         print('\nRecipe {} doesn\'t exist'.format(name))
     return
 
+
 def delete_recipe(name):
     if name in cookbook:
         cookbook.pop(name)
+
 
 def add_recipe(name, ingr, meal, prep_time):
     cookbook[name] = {
@@ -42,16 +45,18 @@ def add_recipe(name, ingr, meal, prep_time):
     }
     return
 
+
 def print_all_recipe():
     for key in cookbook.keys():
         print_recipe(key)
 
-str = 'Please select an option by typing the corresponding number:\n'
-str += '1: Add a recipe\n'
-str += '2: Delete a recipe\n'
-str += '3: Print a recipe\n'
-str += '4: Print the cookbook\n'
-str += '5: Quit'
+
+str = """Please select an option by typing the corresponding number:
+1: Add a recipe
+2: Delete a recipe
+3: Print a recipe
+4: Print the cookbook
+5: Quit"""
 
 while 1:
     print(str)
@@ -72,7 +77,8 @@ while 1:
         delete_recipe(name)
         print('\n{} deleted of the cookbook !'.format(name))
     elif x == "3":
-        name = input("\nPlease enter the recipe's name to get its details:\n>> ")
+        name = input("""\nPlease enter the recipe's name to get \
+its details:\n>> """)
         print_recipe(name)
     elif x == "4":
         print('\n-- COOKBOOK --')
@@ -81,5 +87,6 @@ while 1:
         print('\nCookbook closed.')
         break
     else:
-        print('\nThis option does not exist, please type the corresponding number.\nTo exit, enter 5.')
-    print("")    
+        print("""\nThis option does not exist, please type the \
+corresponding number.\nTo exit, enter 5.""")
+    print("")

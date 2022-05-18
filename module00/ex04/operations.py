@@ -2,15 +2,15 @@ import sys
 
 
 def operations(a, b):
-    print("Sum: " + str(a + b)
+    print("Sum:        " + str(a + b)
           + "\nDifference: " + str(a - b)
-          + "\nProduct: " + str(a * b))
+          + "\nProduct:    " + str(a * b))
     if b != 0:
-        print("Quotient: " + str(a / b)
-              + "\nRemainder: " + str(a % b))
+        print("Quotient:   " + str(a / b)
+              + "\nRemainder:  " + str(a % b))
     else:
-        print("Quotient: ERROR (div by zero)"
-              + "\nRemainder: ERROR (modulo by zero)")
+        print("Quotient:   ERROR (div by zero)"
+              + "\nRemainder:  ERROR (modulo by zero)")
     return
 
 

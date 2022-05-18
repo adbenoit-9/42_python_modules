@@ -2,4 +2,4 @@ pip list
 pip list
 pip show numpy
 pip search "tesseract"
-pip freeze -r requirements.txt
+pip list --format freeze > requirements.txt 

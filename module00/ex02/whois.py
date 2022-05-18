@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import sys
 
 size = len(sys.argv)
@@ -18,4 +16,5 @@ else:
             ret = "I'm Odd."
     except ValueError:
         ret = "AssertionError: argument is not integer"
-print(ret)
+if size != 1:
+    print(ret)

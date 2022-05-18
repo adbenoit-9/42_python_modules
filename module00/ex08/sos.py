@@ -61,7 +61,7 @@ if size != 1:
             break
         output += morse
         if i != size - 1:
-            output += '/'
+            output += '/ '
     if err == 1:
         print('ERROR')
     else:

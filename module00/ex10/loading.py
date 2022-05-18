@@ -1,17 +1,26 @@
-from progressbar import ProgressBar
 import time
+import sys
+
 
 def ft_progress(lst):
-    p = 0
-    print('\r{}%  |#'.format(p))
-    return lst
-
-listy = range(1000)
-pbar = ProgressBar()
-ret = 0
-for elem in ft_progress(listy):
-    ret += (elem + 3) % 5
-    time.sleep(0.01)
-print()
-print(ret)
-
+    size = len(lst)
+    length = len(str(size))
+    t0 = time.time()
+    t = t0
+    for i in lst:
+        p = round(100 * i / size)
+        n = round(i * 20 / size)
+        tmp = t
+        t = time.time() - t0
+        if t - tmp < 0:
+            eta = 0
+        else:
+            eta = (t - tmp) * (size - i - 1)
+        anim = ">"
+        anim = anim.rjust(n, '=')
+        anim = anim.ljust(20, ' ')
+        sys.stdout.write("""\rETA: {eta:5.2f}s [{percent:3d}%] [{anim}]\
+{i:{maxlen}d}/{size} | elapsed time {time:.2f}s"""
+                         .format(eta=eta, percent=p, anim=anim, i=i + 1,
+                                 size=size, maxlen=length, time=t))
+        yield i

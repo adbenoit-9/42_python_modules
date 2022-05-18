@@ -26,10 +26,5 @@ cooking time:\t{cooking_time}
 ingredients:\t{ingredients}
 description:\t{description}
 recipe type:\t{recipe_type}"""\
-        .format(name=self.name,
-                cooking_lvl=self.cooking_lvl,
-                cooking_time=self.cooking_time,
-                ingredients=self.ingredients,
-                description=self.description,
-                recipe_type=self.recipe_type)
+        .format(**self.__dict__)
         return txt

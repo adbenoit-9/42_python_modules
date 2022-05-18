@@ -7,7 +7,7 @@ def ft_progress(lst):
     length = len(str(size))
     t0 = time.time()
     t = t0
-    for i in lst:
+    for i in range(0, size):
         p = round(100 * i / size)
         n = round(i * 20 / size)
         tmp = t

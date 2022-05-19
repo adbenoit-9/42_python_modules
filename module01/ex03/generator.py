@@ -15,7 +15,7 @@ def generator(text, sep=" ", option=None):
         index_list = []
         for i in range(n):
             random_index = rd.randint(0, n - 1)
-            while random_index in index_list:
+            for random_index in index_list:
                 random_index = rd.randint(0, n - 1)
             index_list.append(random_index)
             yield words_list[random_index]

@@ -1,5 +1,5 @@
 class Account(object):
-    
+
     ID_COUNT = 1
 
     def __init__(self, name, **kwargs):
@@ -7,9 +7,10 @@ class Account(object):
         self.name = name
         self.__dict__.update(kwargs)
         Account.ID_COUNT += 1
-    
+
     def transfer(self, amount):
         self.value += amount
+
 
 class Bank(object):
     '''The bank'''
@@ -44,10 +45,10 @@ class Bank(object):
     def is_corrupted(self, account):
         attr = dir(account)
         if len(attr) % 2 == 0 or \
-            'name' not in attr or \
-            'id' not in attr or \
-            'value' not in attr:
-            return True 
+                'name' not in attr or \
+                'id' not in attr or \
+                'value' not in attr:
+            return True
         ret = True
         for elem in attr:
             if elem.startswith('b') is True:
@@ -76,7 +77,6 @@ class Bank(object):
             return False
         return True
 
-
     def fix_account(self, account):
         """
             fix the corrupted account
@@ -93,7 +93,7 @@ class Bank(object):
                 delattr(tofix, elem)
             if elem.startswith('zip') is True or \
                     elem.startswith('addr') is True:
-                        attr_zip = 1
+                attr_zip = 1
         if attr_zip == 0:
             setattr(tofix, 'zipcode', '1234')
         if 'id' not in attr:

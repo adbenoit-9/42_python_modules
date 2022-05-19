@@ -21,7 +21,7 @@ class Vector:
             for i in range(args[0], args[1]):
                 self.values.append([float(i)])
         else:
-            raise ValueError('error')
+            raise ValueError('Wrong argument(s)')
 
     def __add__(self, v):
         if isinstance(v, Vector) is False or self.shape != v.shape:

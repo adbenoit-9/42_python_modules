@@ -3,6 +3,7 @@ class GotCharacter:
         self.first_name = first_name
         self.is_alive = True
 
+
 class Stark(GotCharacter):
     '''A class representing the Stark family. \
 Or when bad things happen to good people.'''

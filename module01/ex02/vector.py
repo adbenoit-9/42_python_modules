@@ -24,7 +24,7 @@ class Vector:
             raise ValueError('error')
 
     def __add__(self, v):
-        if isinstance(v, Vector) == False or self.shape != v.shape:
+        if isinstance(v, Vector) is False or self.shape != v.shape:
             raise ValueError("Vectors must have the same dimensions.")
         res = []
         for i in range(self.shape[1]):
@@ -38,7 +38,7 @@ class Vector:
         return self.__add__(v)
 
     def __sub__(self, v):
-        if isinstance(v, Vector) == False or self.shape != v.shape:
+        if isinstance(v, Vector) is False or self.shape != v.shape:
             raise ValueError("Vectors must have the same dimensions.")
         res = []
         for i in range(self.shape[1]):
@@ -52,7 +52,7 @@ class Vector:
         return self.__sub__(v)
 
     def __mul__(self, n):
-        if isinstance(n, float) == False and isinstance(n, int) == False:
+        if isinstance(n, float) is False and isinstance(n, int) is False:
             raise ValueError("A Vector can be multiplied only by scalar.")
         res = []
         for i in range(self.shape[1]):
@@ -66,7 +66,7 @@ class Vector:
         return self.__mul__(n)
 
     def __truediv__(self, n):
-        if isinstance(n, float) == False and isinstance(n, int) == False:
+        if isinstance(n, float) is False and isinstance(n, int) is False:
             raise ValueError("A Vector can be divided only by scalar.")
         res = []
         for i in range(self.shape[1]):
@@ -78,7 +78,7 @@ class Vector:
 
     def __rtruediv__(self, n):
         raise ValueError("A scalar cannot be divided by a Vector.")
-    
+
     def __repr__(self):
         return 'Vector({})'.format(self.values)
 
@@ -87,12 +87,12 @@ class Vector:
 
     def dot(self, v):
         res = 0
-        if isinstance(v, Vector) == False or self.shape != v.shape:
+        if isinstance(v, Vector) is False or self.shape != v.shape:
             raise ValueError("Vectors must have the same dimensions.")
         for i in range(self.shape[1]):
             for j in range(self.shape[0]):
                 res += self.values[i][j] * v.values[i][j]
-        return res 
+        return res
 
     def T(self):
         res = []

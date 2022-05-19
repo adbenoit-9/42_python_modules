@@ -17,25 +17,45 @@ class Bank(object):
         self.account = []
 
     def add(self, account):
-        self.account.append(account)
+        if isinstance(account, Account) is True:
+            self.account.append(account)
 
     def find_by_id(self, id):
         for account in self.account:
             if account.id == id:
                 return account
+        return None
 
     def find_by_name(self, name):
         for account in self.account:
             if account.name == name:
                 return account
+        return None
 
     def get_account(self, info):
-        if isinstance(info) is int:
+        if isinstance(info, int) is True:
             return self.find_by_id(info)
-        elif isinstance(info) is str:
+        elif isinstance(info, str) is True:
             return self.find_by_name(info)
-        else:
+        elif isinstance(info, Account) is True:
             return info
+        return None
+
+    def is_corrupted(self, account):
+        attr = dir(account)
+        if len(attr) % 2 == 0 or \
+            'name' not in attr or \
+            'id' not in attr or \
+            'value' not in attr:
+            return True 
+        ret = True
+        for elem in attr:
+            if elem.startswith('b') is True:
+                return True
+            if elem.startswith('zip') is True or \
+                    elem.startswith('addr') is True:
+                ret = False
+        return ret
 
     def transfer(self, origin, dest, amount):
         """
@@ -46,11 +66,15 @@ class Bank(object):
         """
         origin = self.get_account(origin)
         dest = self.get_account(dest)
-        if isinstance(origin) is not Account or isinstance(origin) is not Account:
+        if origin is None or dest is None:
             return False
-        if amount < 0 or amount < origin.balance:
+        if self.is_corrupted(origin) is True:
             return False
-        print(dir(origin))
+        if self.is_corrupted(dest) is True:
+            return False
+        if amount < 0 or amount > origin.value:
+            return False
+        return True
 
 
     def fix_account(self, account):
@@ -59,10 +83,26 @@ class Bank(object):
             @account: int(id) or str(name) of the account
             @return True if success, False if an error occured
         """
-
-John = Account("John Smith", balance=2000)
-Gerard = Account("Gerard Smith", balance=2000)
-
-bank = Bank()
-
-bank.transfer(John, Gerard, 200)
+        tofix = self.get_account(account)
+        if tofix is None:
+            return False
+        attr = dir(tofix)
+        attr_zip = 0
+        for elem in attr:
+            if elem.startswith('b') is True:
+                delattr(tofix, elem)
+            if elem.startswith('zip') is True or \
+                    elem.startswith('addr') is True:
+                        attr_zip = 1
+        if attr_zip == 0:
+            setattr(tofix, 'zipcode', '1234')
+        if 'id' not in attr:
+            setattr(tofix, 'id', tofix.ID_COUNT)
+            Account.ID_COUNT += 1
+        if 'name' not in attr:
+            setattr(tofix, 'name', 'unknown{}'.format(tofix.id))
+        if 'value' not in attr:
+            setattr(tofix, 'value', 0)
+        if len(attr) % 2 == 0:
+            setattr(tofix, 'useless', 0)
+        return True

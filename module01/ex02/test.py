@@ -1,9 +1,13 @@
 from vector import Vector
 
-v1 = Vector([1.0, 2.0, 3.0, 4.0])
-v2 = Vector([0.0, 3.0, 1.0, -1.0])
-v4 = Vector([[1.0], [2.0], [3.0], [4.0]])
-v5 = Vector([[0.0], [3.0], [1.0], [-1.0]])
+v1 = Vector([-1.0, 0.0, 1.0, 2.0])
+v2 = Vector([0.0, 1.0, 2.0, 3.0])
+v4 = Vector(-1, 3)
+v5 = Vector(4)
+print("v1 = {}".format(repr(v1)))
+print("v2 = {}".format(repr(v2)))
+print("v4 = {}".format(repr(v4)))
+print("v5 = {}".format(repr(v5)))
 try:
     print(repr(v1 * 2.0))
     print(repr(v4 * 2.0))
@@ -38,6 +42,3 @@ try:
     v3 * v1
 except ValueError as err:
     print(err.args[0])
-print(Vector([1. , 2e-3, 3.14, 5.]).values)
-
-https://github.com/42-AI/Python-Bootcamp-Corrections/blob/main/correction_01.md

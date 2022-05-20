@@ -1,7 +1,7 @@
 from vector import Vector
 
-v1 = Vector([[1.0, 2.0, 3.0, 4.0]])
-v2 = Vector([[0.0, 3.0, 1.0, -1.0]])
+v1 = Vector([1.0, 2.0, 3.0, 4.0])
+v2 = Vector([0.0, 3.0, 1.0, -1.0])
 v4 = Vector([[1.0], [2.0], [3.0], [4.0]])
 v5 = Vector([[0.0], [3.0], [1.0], [-1.0]])
 try:
@@ -38,3 +38,4 @@ try:
     v3 * v1
 except ValueError as err:
     print(err.args[0])
+print(Vector([1. , 2e-3, 3.14, 5.]).values)

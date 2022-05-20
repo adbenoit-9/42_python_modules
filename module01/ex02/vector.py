@@ -5,9 +5,10 @@ class Vector:
             n = len(args[0])
             if n == 0:
                 self.shape = (0, 0)
-            elif len(args[0][0]) != 1:
-                self.shape = (len(args[0][0]), 1)
-                self.values = (args[0].copy())
+            elif isinstance(args[0][0], list) is False:
+                self.shape = (len(args[0]), 1)
+                self.values = args[0].copy()
+                print(self.shape)
             else:
                 self.shape = (1, n)
                 for i in args[0]:

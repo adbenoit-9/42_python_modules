@@ -18,8 +18,12 @@ class Bank(object):
         self.account = []
 
     def add(self, account):
-        if isinstance(account, Account) is True:
-            self.account.append(account)
+        if isinstance(account, Account) is False:
+            raise ValueError("Invalid Type")
+        if self.find_by_name(account.name) is not None:
+            account.name += "_{id}"
+            account.name = account.name.format(id=account.id)
+        self.account.append(account)
 
     def find_by_id(self, id):
         for account in self.account:
@@ -33,13 +37,11 @@ class Bank(object):
                 return account
         return None
 
-    def get_account(self, info):
-        if isinstance(info, int) is True:
-            return self.find_by_id(info)
-        elif isinstance(info, str) is True:
-            return self.find_by_name(info)
-        elif isinstance(info, Account) is True:
-            return info
+    def get_account(self, account):
+        if isinstance(account, int) is True:
+            return self.find_by_id(account)
+        elif isinstance(account, str) is True:
+            return self.find_by_name(account)
         return None
 
     def is_corrupted(self, account):
@@ -69,11 +71,13 @@ class Bank(object):
         dest = self.get_account(dest)
         if origin is None or dest is None:
             return False
-        if self.is_corrupted(origin) is True:
+        elif self.is_corrupted(origin) is True:
             return False
-        if self.is_corrupted(dest) is True:
+        elif self.is_corrupted(dest) is True:
             return False
-        if amount < 0 or amount > origin.value:
+        if isinstance(amount, float) is False and isinstance(amount, int) is False:
+            return False
+        elif amount < 0 or amount > origin.value:
             return False
         return True
 

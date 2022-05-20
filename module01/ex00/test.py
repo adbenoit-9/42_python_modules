@@ -2,29 +2,54 @@ from book import Book
 from recipe import Recipe
 
 b = Book("My seductive recipes")
+try:
+    Book(10)
+except ValueError as err:
+    print(err)
 print(b.creation_date)
-# should be the current date and time
 print(b.last_update)
-# should be the same as the creation date or None
+b.get_recipes_by_types("lunch")
 crumble = Recipe("Crumble" , 1, 25, ["apples", "flour", "sugar"], "delicious", "dessert")
 b.add_recipe(crumble)
 print(b.last_update)
-print(b.get_recipe_by_name("Crumble"))
-# should print the recipe
-# AND
-# <Recipe object at x>
-
-print(b.get_recipe_by_name("Liver Icecream"))
-print(b.get_recipes_by_types("dessert")[0])
-# Should print the Crumble recipe
-print(b.get_recipes_by_types("asdasd"))
-# The recipe type does not exist, error must be handled in a justifiable manner
-# such as returning None, [], or printing an error message 
-# The recipe does not exist
-# The error must be handled in a justifiable manner
-# such as returning None, [], or printing an error message
+b.get_recipe_by_name("Crumble")
+b.get_recipe_by_name("Liver Icecream")
+b.get_recipes_by_types("dessert")[0]
+b.get_recipes_by_types("asdasd")
 try:
     Recipe("cooki", 0, 10, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+except ValueError as err:
+    print(err)
+try:
+    Recipe("", 0, 1, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+except ValueError as err:
+    print(err)
+try:
+    Recipe(4, 1, 10, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+except ValueError as err:
+    print(err)
+try:
+    Recipe("test", 1, 1, ["dough", "sugar", "love"], "deliciousness incarnate", 1)
+except ValueError as err:
+    print(err)
+try:
+    Recipe("test", 1, 1, ["dough", "sugar", "love"], "deliciousness incarnate", "test")
+except ValueError as err:
+    print(err)
+try:
+    Recipe("test", 1, 1, [], "deliciousness incarnate", "lunch")
+except ValueError as err:
+    print(err)
+try:
+    Recipe("test", 1, 1, 1, "deliciousness incarnate", "lunch")
+except ValueError as err:
+    print(err)
+try:
+    Recipe("test", 1, 1, ['test'], 1, "lunch")
+except ValueError as err:
+    print(err)
+try:
+    Recipe("test", 1, -10, ['test'], "", "lunch")
 except ValueError as err:
     print(err)
 

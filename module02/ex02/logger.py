@@ -1,19 +1,28 @@
 import time
 from random import randint
 import os
+import functools
+
 
 def log(function):
-    f = open("machine.log", "a")
-    name = function.__name__
-    # if name == "start_machine":
-    #     t0 = time
-    name_split = name.split('_')
-    name = ""
-    for word in name_split:
-        name += word.capitalize()
-        name += " "
-    f.write('({user})Running: {name}[ exec-time = {time:.3f}ms\n'.format(user=os.getenv('USER'), name=name, ))
-    f.close()
+    @functools.wraps(function)
+    def wrapper(*args, **kwargs):
+        f = open("machine.log", "a")
+        name = function.__name__
+        name = ' '.join(name.split('_')).title().ljust(15)
+        start_time = time.perf_counter()
+        ret = function(*args, **kwargs)
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        unit = "s"
+        if run_time < 1:
+            run_time *= 1000
+            unit = "ms"
+        f.write('({user})Running: {name}[ exec-time = {time:.3f} {unit} ]\n'
+                .format(user=os.getenv('USER'), name=name, time=run_time, unit=unit))
+        f.close()
+        return ret
+    return wrapper
 
 
 class CoffeeMachine():

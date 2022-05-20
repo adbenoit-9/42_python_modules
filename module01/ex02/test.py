@@ -39,3 +39,5 @@ try:
 except ValueError as err:
     print(err.args[0])
 print(Vector([1. , 2e-3, 3.14, 5.]).values)
+
+https://github.com/42-AI/Python-Bootcamp-Corrections/blob/main/correction_01.md

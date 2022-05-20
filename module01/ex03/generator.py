@@ -3,7 +3,8 @@ import random as rd
 
 def generator(text, sep=" ", option=None):
     '''Option is an optional arg, sep is mandatory'''
-    if isinstance(text, str) is False:
+    if isinstance(text, str) is False or \
+            (option is not None and isinstance(option, str) is False):
         yield "ERROR"
         return
     words_list = text.split(sep)
@@ -15,7 +16,7 @@ def generator(text, sep=" ", option=None):
         index_list = []
         for i in range(n):
             random_index = rd.randint(0, n - 1)
-            for random_index in index_list:
+            while random_index in index_list:
                 random_index = rd.randint(0, n - 1)
             index_list.append(random_index)
             yield words_list[random_index]

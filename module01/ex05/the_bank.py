@@ -75,7 +75,8 @@ class Bank(object):
             return False
         elif self.is_corrupted(dest) is True:
             return False
-        if isinstance(amount, float) is False and isinstance(amount, int) is False:
+        if isinstance(amount, float) is False and \
+                isinstance(amount, int) is False:
             return False
         elif amount < 0 or amount > origin.value:
             return False

@@ -9,7 +9,7 @@ class Stark(GotCharacter):
     '''A class representing the Stark family. \
 Or when bad things happen to good people.'''
     def __init__(self, first_name=None, is_alive=True):
-        GotCharacter.__init__(self, name)
+        GotCharacter.__init__(self, first_name, is_alive)
         self.family_name = "Stark"
         self.house_words = "Winter is Coming"
 

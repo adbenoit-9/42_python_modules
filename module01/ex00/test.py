@@ -9,7 +9,8 @@ except ValueError as err:
 print(b.creation_date)
 print(b.last_update)
 b.get_recipes_by_types("lunch")
-crumble = Recipe("Crumble" , 1, 25, ["apples", "flour", "sugar"], "delicious", "dessert")
+crumble = Recipe("Crumble", 1, 25, ["apples", "flour", "sugar"],
+                 "delicious", "dessert")
 b.add_recipe(crumble)
 print(b.last_update)
 b.get_recipe_by_name("Crumble")
@@ -17,27 +18,27 @@ b.get_recipe_by_name("Liver Icecream")
 b.get_recipes_by_types("dessert")[0]
 b.get_recipes_by_types("asdasd")
 try:
-    Recipe("cooki", 0, 10, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+    Recipe("cooki", 0, 10, ["dough", "sugar", "love"], "", "dessert")
 except ValueError as err:
     print(err)
 try:
-    Recipe("", 0, 1, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+    Recipe("", 0, 1, ["dough", "sugar", "love"], "", "dessert")
 except ValueError as err:
     print(err)
 try:
-    Recipe(4, 1, 10, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+    Recipe(4, 1, 10, ["dough", "sugar", "love"], "", "dessert")
 except ValueError as err:
     print(err)
 try:
-    Recipe("test", 1, 1, ["dough", "sugar", "love"], "deliciousness incarnate", 1)
+    Recipe("test", 1, 1, ["dough", "sugar", "love"], "", 1)
 except ValueError as err:
     print(err)
 try:
-    Recipe("test", 1, 1, ["dough", "sugar", "love"], "deliciousness incarnate", "test")
+    Recipe("test", 1, 1, ["dough", "sugar", "love"], "", "test")
 except ValueError as err:
     print(err)
 try:
-    Recipe("test", 1, 1, [], "deliciousness incarnate", "lunch")
+    Recipe("test", 1, 1, [], "", "lunch")
 except ValueError as err:
     print(err)
 try:
@@ -54,8 +55,10 @@ except ValueError as err:
     print(err)
 
 try:
-    Recipe("cooki", 1, 10, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+    Recipe("cooki", 1, 10, ["dough", "sugar", "love"],
+           "deliciousness incarnate", "dessert")
     print("Congratulations you finally made sime delicous cookies")
-    Recipe("cooki", 1.5, 10, ["dough", "sugar", "love"], "deliciousness incarnate", "dessert")
+    Recipe("cooki", 1.5, 10, ["dough", "sugar", "love"],
+           "deliciousness incarnate", "dessert")
 except ValueError as err:
     print(err)

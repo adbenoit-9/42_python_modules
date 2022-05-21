@@ -1,7 +1,6 @@
-import sys
-
 class CsvReader(object):
-    def __init__(self, file_name=None, sep=',', header=False, skip_top=0, skip_bottom=0):
+    def __init__(self, file_name=None, sep=',',
+                 header=False, skip_top=0, skip_bottom=0):
         try:
             self.file = open(file_name, 'r')
             self.data = []
@@ -9,7 +8,7 @@ class CsvReader(object):
             self.header = header
             self.skip_top = skip_top
             self.skip_bottom = skip_bottom
-        except:
+        except Exception:
             self.file = None
 
     def __enter__(self):
@@ -38,7 +37,7 @@ class CsvReader(object):
         Returns:
             nested list (list(list, list, ...)) representing the data.
         """
-        start = self.skip_top + 1 if self.header else self.skip_top 
+        start = self.skip_top + 1 if self.header else self.skip_top
         end = len(self.data) - self.skip_bottom
         return self.data[start:end]
 

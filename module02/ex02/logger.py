@@ -19,7 +19,8 @@ def log(function):
             run_time *= 1000
             unit = "ms"
         f.write('({user})Running: {name}[ exec-time = {time:.3f} {unit} ]\n'
-                .format(user=os.getenv('USER'), name=name, time=run_time, unit=unit))
+                .format(user=os.getenv('USER'), name=name, time=run_time,
+                        unit=unit))
         f.close()
         return ret
     return wrapper

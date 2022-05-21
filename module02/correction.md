@@ -2,7 +2,7 @@
 https://github.com/42-AI/Python-Bootcamp-Corrections/blob/main/correction_02.md
 
 ## Comment:
-This third module is the evolution of two original projects created by the
+This third module is the evolution of txwo original projects created by the
 Paris-based student organization 42 AI.
 They are named Bootcamp Python and Bootcamp Machine Learning.
 active members of 42 AI re-designed both of them for the school curriculum.

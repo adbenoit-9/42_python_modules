@@ -5,12 +5,12 @@ class NumPyCreator:
     def check_nested_seq(self, seq):
         if len(seq) == 0:
             return True
-        is_nested = -1
+        is_nested = False
         for i, x in enumerate(seq):
             if isinstance(x, tuple) or isinstance(x, list):
-                is_nested = i
+                is_nested = True
                 break
-        if is_nested == -1:
+        if is_nested is False:
             return True
         for x in seq:
             if isinstance(x, type(seq[i])) is False:

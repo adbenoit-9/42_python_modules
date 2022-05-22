@@ -7,13 +7,13 @@ def ft_reduce(function_to_apply, iterable):
         A value, of same type of elements in the iterable parameter.
         None if the iterable can not be used by the function.
     """
-    if callable(function_to_apply) is False:
-        raise TypeError("'{}' object is not callable"
-                        .format(type(function_to_apply).__name__))
     try:
         iter(iterable)
     except TypeError as err:
         raise err
+    if callable(function_to_apply) is False:
+        raise TypeError("'{}' object is not callable"
+                        .format(type(function_to_apply).__name__))
     if len(iterable) == 0:
         return None
     ret = iterable[0]

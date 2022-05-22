@@ -7,9 +7,6 @@ def ft_filter(function_to_apply, iterable):
         An iterable.
         None if the iterable can not be used by the function.
     """
-    if callable(function_to_apply) is False:
-        raise TypeError("'{}' object is not callable"
-                        .format(type(function_to_apply).__name__))
     try:
         iter(iterable)
     except TypeError as err:
@@ -18,6 +15,9 @@ def ft_filter(function_to_apply, iterable):
         for elem in iterable:
             if elem:
                 yield elem
+    elif callable(function_to_apply) is False:
+        raise TypeError("'{}' object is not callable"
+                        .format(type(function_to_apply).__name__))
     else:
         for elem in iterable:
             if function_to_apply(elem):

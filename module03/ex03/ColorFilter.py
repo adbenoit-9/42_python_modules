@@ -5,15 +5,6 @@ class ColorFilter:
     def __init__(self) -> None:
         pass
 
-    def check_valid_array(self, array):
-        if isinstance(array, np.ndarray) is False:
-            return False
-        elif len(array.shape) != 3:
-            return False
-        elif array.shape[2] < 3:
-            return False
-        return True
-
     def invert(self, array):
         """
         Inverts the color of the image received as a numpy array.
@@ -23,9 +14,9 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
-        if self.check_valid_array(array) is False:
+        if isinstance(array, np.ndarray) is False:
             return None
-        new_arr = 0 + array
+        new_arr = array.copy()
         for z in range(3):
             new_arr[:, :, z] = 1.0 - new_arr[:, :, z]
         return new_arr
@@ -39,10 +30,9 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
-        new_arr = np.zeros(array.shape)
-        new_arr = np.dstack([array])
-        if self.check_valid_array(array) is False:
+        if isinstance(array, np.ndarray) is False:
             return None
+        new_arr = array.copy()
         new_arr[:, :, (0, 1)] = 0
         return new_arr
 
@@ -56,7 +46,7 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
-        if self.check_valid_array(array) is False:
+        if isinstance(array, np.ndarray) is False:
             return None
         new_arr = array.copy()
         new_arr[:, :, (0, 2)] = 0
@@ -71,9 +61,9 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
-        if self.check_valid_array(array) is False:
+        if isinstance(array, np.ndarray) is False:
             return None
-        new_arr = 0 + array
+        new_arr = array.copy()
         new_arr[:, :, (2, 1)] = 0
         return new_arr
 
@@ -91,10 +81,14 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
-        if self.check_valid_array(array) is False:
+        if isinstance(array, np.ndarray) is False:
             return None
-        shades = np.linspace(0, 1, 4)
-        # for i in shades:
+        n = 5
+        shades = np.linspace(0, 1, n)
+        new_arr = array.copy()
+        for i in range(1, n):
+            array[(array < shades[i]) & (array > shades[i - 1])] = shades[i]
+        return array
 
     def to_grayscale(self, array, filter, **kwargs):
         """
@@ -110,7 +104,7 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
-        if self.check_valid_array(array) is False:
+        if isinstance(array, np.ndarray) is False:
             return None
         if filter == 'm' or filter == 'mean':
             if len(kwargs.keys()) != 0:
@@ -122,14 +116,16 @@ class ColorFilter:
             weights = kwargs['weights']
             if isinstance(weights, list) is False:
                 return None
-            elif len(weights) != 3 or sum(weights) != 1:
+            elif len(weights) != 3:
                 return None
             for x in weights:
                 if isinstance(x, float) is False:
                     return None
+            if np.sum(weights) > 1.0001 or np.sum(weights) < 0.9999:
+                return None
         else:
             return None
-        new_arr = np.tile(array, 1)
+        new_arr = array.copy()
         for y in range(array.shape[0]):
             for x in range(array.shape[1]):
                 new_arr[y, x] = sum(array[y, x, :3] * weights)

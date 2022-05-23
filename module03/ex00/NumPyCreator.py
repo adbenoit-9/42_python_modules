@@ -2,6 +2,9 @@ import numpy as np
 
 
 class NumPyCreator:
+    def __init__(self):
+        pass
+
     def check_nested_seq(self, seq):
         if len(seq) == 0:
             return True

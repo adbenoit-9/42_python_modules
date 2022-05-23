@@ -1,9 +1,10 @@
-import numpy as np
-from PIL import Image
 import matplotlib.pyplot as plt
-import matplotlib.cbook as cbook
+
 
 class ImageProcessor:
+    def __init__(self):
+        pass
+
     def load(self, path):
         try:
             img = plt.imread(path)

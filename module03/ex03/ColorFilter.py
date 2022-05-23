@@ -125,8 +125,5 @@ class ColorFilter:
                 return None
         else:
             return None
-        new_arr = array.copy()
-        for y in range(array.shape[0]):
-            for x in range(array.shape[1]):
-                new_arr[y, x] = sum(array[y, x, :3] * weights)
-        return new_arr[..., :3]
+        scale = np.sum(array[:, :, :3] * weights, axis=2)
+        return np.dstack((scale, scale, scale))

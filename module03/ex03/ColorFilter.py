@@ -25,9 +25,10 @@ class ColorFilter:
         """
         if self.check_valid_array(array) is False:
             return None
+        new_arr = 0 + array
         for z in range(3):
-            array[:, :, z] = 1.0 - array[:, :, z]
-        return array
+            new_arr[:, :, z] = 1.0 - new_arr[:, :, z]
+        return new_arr
 
     def to_blue(self, array):
         """
@@ -38,10 +39,12 @@ class ColorFilter:
             array: numpy.ndarray corresponding to the transformed image.
             None: otherwise.
         """
+        new_arr = np.zeros(array.shape)
+        new_arr = np.dstack([array])
         if self.check_valid_array(array) is False:
             return None
-        array[:, :, (0, 1)] = 0
-        return array
+        new_arr[:, :, (0, 1)] = 0
+        return new_arr
 
         
     def to_green(self, array):
@@ -55,8 +58,9 @@ class ColorFilter:
         """
         if self.check_valid_array(array) is False:
             return None
-        array[:, :, (0, 2)] = 0
-        return array
+        new_arr = array.copy()
+        new_arr[:, :, (0, 2)] = 0
+        return new_arr
 
     def to_red(self, array):
         """
@@ -69,8 +73,9 @@ class ColorFilter:
         """
         if self.check_valid_array(array) is False:
             return None
-        array[:, :, (2, 1)] = 0
-        return array
+        new_arr = 0 + array
+        new_arr[:, :, (2, 1)] = 0
+        return new_arr
 
     def to_celluloid(self, array):
         """
@@ -88,6 +93,8 @@ class ColorFilter:
         """
         if self.check_valid_array(array) is False:
             return None
+        shades = np.linspace(0, 1, 4)
+        # for i in shades:
 
     def to_grayscale(self, array, filter, **kwargs):
         """
@@ -105,3 +112,25 @@ class ColorFilter:
         """
         if self.check_valid_array(array) is False:
             return None
+        if filter == 'm' or filter == 'mean':
+            if len(kwargs.keys()) != 0:
+                return None
+            weights = [1 / 3, 1 / 3, 1 / 3]
+        elif filter == 'w' or filter == 'weight':
+            if len(kwargs.keys()) != 1 or 'weights' not in kwargs.keys():
+                return None
+            weights = kwargs['weights']
+            if isinstance(weights, list) is False:
+                return None
+            elif len(weights) != 3 or sum(weights) != 1:
+                return None
+            for x in weights:
+                if isinstance(x, float) is False:
+                    return None
+        else:
+            return None
+        new_arr = np.tile(array, 1)
+        for y in range(array.shape[0]):
+            for x in range(array.shape[1]):
+                new_arr[y, x] = sum(array[y, x, :3] * weights)
+        return new_arr[..., :3]

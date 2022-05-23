@@ -28,8 +28,6 @@ class ScrapBooker(object):
         Returns:
             new_arr: the cropped numpy.ndarray.
             None otherwise (combinaison of parameters not incompatible).
-        Raises:
-            This function should not raise any Exception.
         """
         if isinstance(array, np.ndarray) is False or \
                 self.is_valid_tuple(dim) is False or \
@@ -50,8 +48,6 @@ class ScrapBooker(object):
         Returns:
             new_arr: thined numpy.ndarray.
             None otherwise (combinaison of parameters not incompatible).
-        Raises:
-            This function should not raise any Exception.
         """
         if isinstance(array, np.ndarray) is False or \
                 isinstance(n, int) is False or \
@@ -72,8 +68,6 @@ class ScrapBooker(object):
         Returns:
             new_arr: juxtaposed numpy.ndarray.
             None otherwise (combinaison of parameters not incompatible).
-        Raises:
-            This function should not raise any Exception.
         """
         if isinstance(array, np.ndarray) is False or \
                 isinstance(n, int) is False or \
@@ -96,8 +90,6 @@ class ScrapBooker(object):
         Returns:
             new_arr: mosaic numpy.ndarray.
             None otherwise (combinaison of parameters not incompatible).
-        Raises:
-            This function should not raise any Exception.
         """
         if isinstance(array, np.ndarray) is False or \
                 self.is_valid_tuple(dim) is False:

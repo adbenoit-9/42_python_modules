@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 if __name__ == '__main__':
     cf = ColorFilter()
     for f in [cf.to_red, cf.to_green, cf.to_blue, cf.invert]:
-        arr = plt.imread("../resources/elon_canaGAN.png")
+        arr = plt.imread("../ressources/elon_canaGAN.png")
         im = f(arr)
         if arr is None:
             print('failed')

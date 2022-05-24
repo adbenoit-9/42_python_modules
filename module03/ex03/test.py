@@ -3,6 +3,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 if __name__ == '__main__':
+    cf = ColorFilter())
+
     for f in [cf.to_red, cf.to_green, cf.to_blue, cf.invert]:
         arr = plt.imread("../resources/elon_canaGAN.png")
         plt.imshow(f(arr))

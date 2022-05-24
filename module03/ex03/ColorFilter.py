@@ -36,7 +36,6 @@ class ColorFilter:
         new_arr[:, :, (0, 1)] = 0
         return new_arr
 
-        
     def to_green(self, array):
         """
         Applies a green filter to the image received as a numpy array.

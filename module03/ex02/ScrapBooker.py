@@ -17,10 +17,11 @@ class ScrapBooker(object):
             return False
         return True
 
-    def crop(self, array, dim, position=(0,0)):
+    def crop(self, array, dim, position=(0, 0)):
         """
         Crops the image as a rectangle via dim arguments (being the new height
-        and width oof the image) from the coordinates given by position arguments.
+        and width oof the image) from the coordinates given by position
+        arguments.
         Args:
             array: numpy.ndarray
             dim: tuple of 2 integers.
@@ -32,17 +33,19 @@ class ScrapBooker(object):
         if isinstance(array, np.ndarray) is False or \
                 self.is_valid_tuple(dim) is False or \
                 self.is_valid_tuple(position) is False:
-                    return None
+            return None
         xend = position[1] + dim[1]
         yend = position[0] + dim[0]
         return array[position[0]:yend, position[1]:xend]
 
     def thin(self, array, n, axis):
         """
-        Deletes every n-th line pixels along the specified axis (0: vertical, 1: horizontal)
+        Deletes every n-th line pixels along the specified axis
+        (0: vertical, 1: horizontal)
         Args:
             array: numpy.ndarray.
-            n: non null positive integer lower than the number of row/column of the array
+            n: non null positive integer lower than the number of
+               row/column of the array
             (depending of axis value).
             axis: positive non null integer.
         Returns:
@@ -52,11 +55,10 @@ class ScrapBooker(object):
         if isinstance(array, np.ndarray) is False or \
                 isinstance(n, int) is False or \
                 isinstance(axis, int) is False:
-                    return None
+            return None
         elif n <= 0 or (axis != 0 and axis != 1):
             return None
         return np.delete(array, n, 1 - axis)
-        
 
     def juxtapose(self, array, n, axis):
         """
@@ -72,7 +74,7 @@ class ScrapBooker(object):
         if isinstance(array, np.ndarray) is False or \
                 isinstance(n, int) is False or \
                 isinstance(axis, int) is False:
-                    return None
+            return None
         elif n <= 0 or (axis != 0 and axis != 1):
             return None
         new_arr = array.copy()
@@ -82,8 +84,9 @@ class ScrapBooker(object):
 
     def mosaic(self, array, dim):
         """
-        Makes a grid with multiple copies of the array. The dim argument specifies
-        the number of repetition along each dimensions.
+        Makes a grid with multiple copies of the array.
+        The dim argument specifies the number of repetition
+        along each dimensions.
         Args:
             array: numpy.ndarray.
             dim: tuple of 2 integers.

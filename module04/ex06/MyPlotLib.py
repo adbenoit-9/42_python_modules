@@ -45,7 +45,6 @@ class MyPlotLib:
             plt.show()
         except Exception:
             print('Error: Failed to display pairplot.')
-        
 
     def box_plot(self, data, features):
         if isinstance(data, pd.DataFrame) is False or \

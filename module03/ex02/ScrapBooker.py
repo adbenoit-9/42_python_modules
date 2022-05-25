@@ -58,7 +58,8 @@ class ScrapBooker(object):
             return None
         elif n <= 0 or (axis != 0 and axis != 1):
             return None
-        return np.delete(array, n, 1 - axis)
+        index = np.arange(n - 1, array.shape[1 - axis], 3)
+        return np.delete(array, index, 1 - axis)
 
     def juxtapose(self, array, n, axis):
         """
@@ -78,7 +79,7 @@ class ScrapBooker(object):
         elif n <= 0 or (axis != 0 and axis != 1):
             return None
         new_arr = array.copy()
-        for i in range(n):
+        for i in range(n - 1):
             new_arr = np.concatenate((new_arr, array), axis)
         return new_arr
 

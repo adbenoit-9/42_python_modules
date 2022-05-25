@@ -10,7 +10,7 @@ def youngfellah(df, year):
     Returns:
         dct: dictionary with 2 keys for female and male athlete.
     """
-    if isinstance(df, pd.dataFrame) is False or \
+    if isinstance(df, pd.DataFrame) is False or \
             isinstance(year, int) is False or year < 0:
         return None
     women = df[(df['Year'] == year) & (df['Sex'] == 'F')]

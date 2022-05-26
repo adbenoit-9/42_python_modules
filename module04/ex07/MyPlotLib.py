@@ -14,11 +14,11 @@ class MyPlotLib:
                 isinstance(features, list) is False:
             return None
         try:
-            axis = plt.subplots(len(features))[1]
+            axis = plt.subplots(1, len(features), figsize=(10, 5))[1]
             for i, elem in enumerate(features):
                 x = data[elem].tolist()
                 axis[i].hist(x, 15, density=False, facecolor='b', alpha=0.75)
-                plt.title(elem)
+                axis[i].set_title(elem)
                 axis[i].grid(True)
             plt.show()
         except Exception:
@@ -29,7 +29,7 @@ class MyPlotLib:
                 isinstance(features, list) is False:
             return None
         try:
-            axis = plt.subplots()[1]
+            axis = plt.subplots(figsize=(10, 5))[1]
             for elem in features:
                 pd.DataFrame(data[elem]).plot(ax=axis, kind='density')
             plt.show()
@@ -41,7 +41,7 @@ class MyPlotLib:
                 isinstance(features, list) is False:
             return None
         try:
-            sb.pairplot(data.filter(items=features))
+            sb.pairplot(data.filter(items=features), height=5)
             plt.show()
         except Exception:
             print('Error: Failed to display pairplot.')
@@ -51,7 +51,7 @@ class MyPlotLib:
                 isinstance(features, list) is False:
             return None
         try:
-            data.boxplot(column=features, grid=False)
+            data.boxplot(column=features, grid=False, figsize=(10, 5))
             plt.show()
         except Exception:
             print('Error: Failed to display boxplot.')

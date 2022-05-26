@@ -1,7 +1,8 @@
-from YoungestFellah import youngfellah
+from YoungestFellah import youngestfellah
 from FileLoader import FileLoader
 
 df = FileLoader().load('../data/athlete_events.csv')
-print(youngfellah(df, 1988))
-print(youngfellah(df, 2004))
-print(youngfellah(df, 1991))
+print(youngestfellah(df, 1992))
+print(youngestfellah(df, 2004))
+print(youngestfellah(df, 2010))
+print(youngestfellah(df, 2003))

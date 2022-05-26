@@ -13,7 +13,7 @@ def howManyMedalsByCountry(df, name):
                    'Rugby Sevens', 'Rugby', 'Lacrosse', 'Polo']
     data = df[df['Team'] == name]
     team_data = data[data.Sport.isin(team_sports)]
-    team_data = team_data.drop_duplicates(['Medal', 'Event'])
+    team_data = team_data.drop_duplicates(['Year', 'Medal', 'Event'])
     others = data[~data.Sport.isin(team_sports)]
     data = pd.concat([team_data, others])
     years = data.drop_duplicates(subset=['Year']).sort_values('Year')

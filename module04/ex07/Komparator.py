@@ -9,7 +9,7 @@ import math
 class Komparator:
     def __init__(self, data) -> None:
         if isinstance(data, pd.DataFrame) is False:
-            raise ValueError('Invald dataset')
+            raise ValueError('Invalid dataset')
         self.data = data
 
     def compare_box_plots(self, categorical_var, numerical_var):
@@ -21,12 +21,12 @@ class Komparator:
             print('Error: Failed to display compare boxplots.')
 
     def density(self, categorical_var, numerical_var):
-        categories = self.data[categorical_var].unique()
-        for i, x in enumerate(categories):
-            if isinstance(x, float) and math.isnan(x):
-                categories = np.delete(categories, i)
-                break
         try:
+            categories = self.data[categorical_var].unique()
+            for i, x in enumerate(categories):
+                if isinstance(x, float) and math.isnan(x):
+                    categories = np.delete(categories, i)
+                    break
             axis = plt.subplots(figsize=(20, 10))[1]
             for elem in categories:
                 x = self.data[self.data[categorical_var] == elem]
@@ -38,12 +38,12 @@ class Komparator:
             print('Error: Failed to display density.')
 
     def compare_histograms(self, categorical_var, numerical_var):
-        categories = self.data[categorical_var].unique()
-        for i, x in enumerate(categories):
-            if isinstance(x, float) and math.isnan(x):
-                categories = np.delete(categories, i)
-                break
         try:
+            categories = self.data[categorical_var].unique()
+            for i, x in enumerate(categories):
+                if isinstance(x, float) and math.isnan(x):
+                    categories = np.delete(categories, i)
+                    break
             figure, axis = plt.subplots(1, len(categories), figsize=(20, 10))
             for i, elem in enumerate(categories):
                 x = self.data[self.data[categorical_var] == elem]

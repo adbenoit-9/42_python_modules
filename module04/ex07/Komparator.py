@@ -46,9 +46,9 @@ class Komparator:
                     break
             figure, axis = plt.subplots(1, len(categories), figsize=(20, 10))
             for i, elem in enumerate(categories):
-                x = self.data[self.data[categorical_var] == elem]
-                x = x[numerical_var].to_list()
-                axis[i].hist(x, 15, density=False, facecolor='b', alpha=0.75)
+                y = self.data[self.data[categorical_var] == elem]
+                y = y[numerical_var].to_list()
+                axis[i].hist(y, 15, density=False, facecolor='b', alpha=0.75)
                 axis[i].set_xlabel(numerical_var)
                 axis[i].set_title(elem)
                 axis[i].grid(True)

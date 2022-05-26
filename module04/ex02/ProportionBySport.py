@@ -14,9 +14,14 @@ def proportionBySport(df, year, sport, gender):
     Returns:
         prop: a float corresponding to the proportion.
     """
-    filtered = df[(df['Year'] == year) & (df['Sex'] == gender)]
-    total = len(filtered.drop_duplicates(subset=['ID']).index)
-    filtered = filtered[filtered['Sport'] == sport]
-    filtered = filtered.drop_duplicates(subset=['ID'])
-    n = len(filtered.index)
-    return n / total
+    try:
+        filtered = df[(df['Year'] == year) & (df['Sex'] == gender)]
+        total = len(filtered.drop_duplicates(subset=['ID']).index)
+        filtered = filtered[filtered['Sport'] == sport]
+        filtered = filtered.drop_duplicates(subset=['ID'])
+        n = len(filtered.index)
+        if n == 0:
+            return 0.
+        return n / total
+    except Exception:
+        return None

@@ -6,4 +6,4 @@ if __name__ == '__main__':
     komp = Komparator(data)
     komp.compare_box_plots('Medal', 'Age')
     komp.compare_histograms('Medal', 'Height')
-    # komp.compare_density('Medal', 'Weight')
+    komp.density('Medal', 'Weight')

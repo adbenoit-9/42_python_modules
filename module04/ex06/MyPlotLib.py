@@ -12,7 +12,7 @@ class MyPlotLib:
     def histogram(self, data, features):
         if isinstance(data, pd.DataFrame) is False or \
                 isinstance(features, list) is False or \
-                    len(features) == 0:
+                len(features) == 0:
             return None
         try:
             if len(features) == 1:
@@ -24,7 +24,8 @@ class MyPlotLib:
                 axis = plt.subplots(1, len(features), figsize=(10, 5))[1]
                 for i, elem in enumerate(features):
                     y = data[elem].tolist()
-                    axis[i].hist(y, 15, density=False, facecolor='b', alpha=0.75)
+                    axis[i].hist(y, 15, density=False, facecolor='b',
+                                 alpha=0.75)
                     axis[i].set_title(elem)
                     axis[i].grid(True)
             plt.show()
@@ -34,7 +35,7 @@ class MyPlotLib:
     def density(self, data, features):
         if isinstance(data, pd.DataFrame) is False or \
                 isinstance(features, list) is False or \
-                    len(features) == 0:
+                len(features) == 0:
             return None
         try:
             axis = plt.subplots(figsize=(10, 5))[1]
@@ -47,7 +48,7 @@ class MyPlotLib:
     def pair_plot(self, data, features):
         if isinstance(data, pd.DataFrame) is False or \
                 isinstance(features, list) is False or \
-                    len(features) == 0:
+                len(features) == 0:
             return None
         try:
             sb.pairplot(data.filter(items=features), height=5)
@@ -58,7 +59,7 @@ class MyPlotLib:
     def box_plot(self, data, features):
         if isinstance(data, pd.DataFrame) is False or \
                 isinstance(features, list) is False or \
-                    len(features) == 0:
+                len(features) == 0:
             return None
         try:
             data.boxplot(column=features, grid=False, figsize=(10, 5))
